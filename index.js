@@ -516,7 +516,7 @@ async function main() {
           (input) => {
             try {
               window.__crackle__.loadMod(input);
-              ide.showMessage(`Mod $loaded successfully!`);
+              ide.showMessage(`Mod loaded successfully!`);
             } catch (e) {
               ide.showMessage(
                 `Failed to load mod:\n${e}. Check the console for more details.`,
