@@ -600,7 +600,7 @@ async function main() {
       );
       this.label.setExtent(
         new Point(
-          this.steppingButton.left() - this.settingsButton.right() - 5 * 2 - this.steppingButton.width(),
+          this.steppingButton.left() - this.modButton.right() - 5 * 2,
           this.label.children[0].height()
         )
       );
