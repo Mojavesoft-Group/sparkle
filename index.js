@@ -598,6 +598,12 @@ async function main() {
           this.label.top(),
         ),
       );
+      this.label.setExtent(
+        new Point(
+          this.steppingButton.left() - this.settingsButton.right() - 5 * 2 - this.steppingButton.width(),
+          this.label.children[0].height()
+        )
+      );
       this.label.children[0].setPosition(this.label.position());
     };
     controlBar.fixLayout_ = controlBar.fixLayout;
