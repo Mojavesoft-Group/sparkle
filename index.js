@@ -613,6 +613,11 @@ async function main() {
     adjustLabel(controlBar.modButton);
     controlBar.fixLayout();
   };
+  IDE_Morph.prototype.toggleAppMode_ = IDE_Morph.prototype.toggleAppMode
+  IDE_Morph.prototype.toggleAppMode = function (x) {
+    this.toggleAppMode_(x);
+    this.isAppMode ? this.controlBar.modButton.hide() : this.controlBar.modButton.show()
+  }
   // create mod button
 
   ide.createModButton();
