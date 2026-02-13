@@ -16,6 +16,16 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+
+// Save all mods to localStorage
+function saveAllMods() {
+  localStorage.setItem("sparkle_mods", JSON.stringify(window.__crackle__.loadedMods));
+}
+
+function loadAllMods() {
+  JSON.parse(localStorage.getItem("sparkle_mods")).forEach((item) => {console.log(item); window.__crackle__.loadedMods.push(deserializeMod(item))} )
+}
+
 // Get a currently LOADED mod by its ID
 function findModById(id) {
   return window.__crackle__.loadedMods.find((mod) => mod.id == id);
@@ -27,13 +37,35 @@ function nameFromID(id) {
   return id.replace(/[_-]/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+// Deserialize a mod.
+function deserializeMod(mod) {
+  mod = Function(mod)();
+  return mod;
+}
+
+// Serialize all mods. Don't use.
+function serializeAllMods() {
+  //window.__crackle__.loadedMods.forEach((item) => {console.log(item); item = item.toString()} )
+  return true;
+}
+
 // A Mod, loaded from code
 class Mod extends EventTarget {
   constructor(code) {
     super(); // initialize EventTarget
 
     // execute the code in a new function scope
-    let returnValue = new Function(code)();
+    console.log(typeof code);
+    let returnValue;
+    if (typeof code == "string") {
+      returnValue = Function(code)();
+      console.log(returnValue);
+      console.log(typeof returnValue);
+    }
+    
+    else {
+      returnValue = code;
+    }
 
     if (returnValue && typeof returnValue === "object") {
       // get metadata
@@ -93,11 +125,13 @@ function showModInfo(id) {
 // Delete a mod by its ID
 function deleteMod(id) {
   let mod = findModById(id);
-  mod.cleanupFuncs.forEach((func) => func());
+  console.log(mod);
+  mod.cleanupFuncs.forEach((func) => {console.log(func); func()});
 
   window.__crackle__.loadedMods = window.__crackle__.loadedMods.filter(
     (mod) => mod.id != id,
   );
+  saveAllMods();
 }
 
 // Trigger an event on all loaded mods
@@ -342,25 +376,17 @@ function attachMenuHooks(ide) {
   };
 }
 
-function loadAutoloadMods() {
-  const data = localStorage.getItem("crackle_autoload_mods");
-  if (!data) localStorage.setItem("crackle_autoload_mods", "[]");
-
-  return data ? JSON.parse(data) : [];
+function loadAutoloadMods() { // don't use this!
+  return false;
 }
 
 async function autoloadMods(ide) {
-  window.__crackle__.autoloadMods = loadAutoloadMods();
+  window.__crackle__.autoloadMods = window.__crackle__.loadedMods;
 
   for (const mod of window.__crackle__.autoloadMods) {
     try {
-      if (mod.type === "code") {
-        window.__crackle__.loadMod(mod.content);
-      } else if (mod.type === "url") {
-        const resp = await fetch(mod.content);
-        const code = await resp.text();
-        window.__crackle__.loadMod(code);
-      }
+      console.log(mod);
+      window.__crackle__.loadMod(mod);
     } catch (e) {
       ide.showMessage("Failed to autoload mod, check console for more info");
 
@@ -380,9 +406,12 @@ async function main() {
 
   // if __crackle__ already exists, reload the page (to avoid duplicates)
   if (window.__crackle__) {
-    window.location.reload();
+    //window.location.reload();
     return;
   }
+
+  
+
 
   // create the __crackle__ object
   window.__crackle__ = {
@@ -406,13 +435,17 @@ async function main() {
       });
 
       mod.main(createApi(mod));
-      this.loadedMods.push(mod);
+      this.loadedMods.push(new Mod(code));
 
       return mod;
     },
 
     currentMenu: null,
   };
+
+  if (localStorage.getItem("sparkle_mods")) {
+    loadAllMods();
+  }
 
   // adjust the project label position to be after the mod button
   // this is needed because the fixLayout for the IDE doesnt know
@@ -517,6 +550,7 @@ async function main() {
             try {
               window.__crackle__.loadMod(input);
               ide.showMessage(`Mod loaded successfully!`);
+              saveAllMods();
             } catch (e) {
               ide.showMessage(
                 `Failed to load mod:\n${e}. Check the console for more details.`,
@@ -545,6 +579,7 @@ async function main() {
             try {
               let mod = window.__crackle__.loadMod(e.target.result);
               ide.showMessage(`Mod "${mod.name}" loaded successfully!`);
+              saveAllMods();
             } catch (e) {
               ide.showMessage(`Failed to load mod:\n${e}`);
             }
