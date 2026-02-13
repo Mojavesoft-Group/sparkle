@@ -1,7 +1,7 @@
-# CrackleSDK
-![Crackle Logo](doc/logo.png)
+# Sparkle
+![Sparkle logo](doc/logo.gif)
 
-[History](HISTORY.md) | [License](LICENSE)
+[License](LICENSE)
 
 A modding framework for Snap!, made by [@tethrarxitet](https://forum.snap.berkeley.edu/u/tethrarxitet) and 
 [@codingisfun2831t](https://forum.snap.berkeley.edu/u/codingisfun2831t).
