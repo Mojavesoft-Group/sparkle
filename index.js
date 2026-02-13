@@ -498,9 +498,9 @@ async function main() {
         // show the dialog. soon after the image will load and update
         // the dialog with it.
         dlg.inform(
-          "About Crackle",
-          `Crackle, a modding framework for Snap!\n` +
-            `Developed by tethrarxitet and codingisfun2831t\n` +
+          "About Sparkle",
+          `Sparkle, a modding framework for Snap!\n` +
+            `Forked from Crackle and improved by PPPDUD\n` +
             `Version ${window.__crackle__.version}\n`,
           world,
         );
@@ -560,8 +560,8 @@ async function main() {
       // action on click - show mod menu
       action() {
         const menu = new MenuMorph(modButton);
-        menu.addItem("About Crackle...", "about");
-        menu.addItem("Download Source...", "download");
+        menu.addItem("About Sparkle...", "about");
+        menu.addItem("Download source...", "download");
         menu.addLine();
         menu.addItem("Load mod from code...", "loadMod");
         menu.addItem("Load mod from file...", "loadModFile");
