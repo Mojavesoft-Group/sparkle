@@ -4,7 +4,7 @@
 [License](LICENSE)
 
 A modding framework for Snap!, made by [@tethrarxitet](https://forum.snap.berkeley.edu/u/tethrarxitet) and 
-[@codingisfun2831t](https://forum.snap.berkeley.edu/u/codingisfun2831t).
+[@codingisfun2831t](https://forum.snap.berkeley.edu/u/codingisfun2831t) with some improvements done by [@PPPDUD](https://github.com/pppdud/).
 
 # Loading in browser
 For now, CrackleSDK does not have any pages for it on common browser extension stores, so you will have to load it manually for your browser. I haven't put it on any stores as it isnt in a good enough state yet..
