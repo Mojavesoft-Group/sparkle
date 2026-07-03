@@ -1,4 +1,7 @@
 # Sparkle
+> [!IMPORTANT]
+> Currently, @PPPDUD is suspended from GitHub (check [this post](https://mojavesoft.net/newblog/_site/github/2026/06/28/github-suspension.html) he made on his blog!) Currently @d016 will be managing. Once PPPDUD is back, this will be removed.
+> 
 <img width=384 height=124 src=doc/wordmark.png>
 
 [History](README.md#History) | [License](LICENSE)
