@@ -7,7 +7,7 @@ Before trying to integrate Sparkle into your mod, ensure that its URLs are not c
 If it is, please open a PR to remove the URLs and wait for the next release of Sparkle before integrating it into your fork.
 
 ## Adding the necessary source code files
-Visit the Releases tab and choose a Sparkle version. Download the file named `sparkle.js`, and add it to the `src/` directory of your fork.
+Visit the Releases tab and choose a Sparkle version. Download the file named `sparkle.min.js`, and add it to the `src/` directory of your fork.
 
 ### Waiting for the fork to load
 In some cases, it may be useful to run code once your fork has loaded. Sparkle exposes a function called `waitForSnapReady()` that does exactly that. Here's an example:
@@ -22,6 +22,6 @@ preloadAddonFromPath("src/addon.js");
 ~~~
 
 ## Modifying snap.html
-In order to make Sparkle automatically load as a component of your fork, open the `snap.html` file, create a new line after the last `<script>...</script>` tag, and paste in the following code: `<script src="src/sparkle.js"></script>`.
+In order to make Sparkle automatically load as a component of your fork, open the `snap.html` file, create a new line after the last `<script>...</script>` tag, and paste in the following code: `<script src="src/sparkle.min.js"></script>`.
 
 Congratulations! You've integrated your fork with Sparkle!
