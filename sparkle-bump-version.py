@@ -12,15 +12,15 @@ f = open("manifest.json", "w")
 f.write(json.dumps(manifest, indent=4))
 f.close()
 
-f = open("bonobo.toml", "rb")
-bonobo = tomllib.load(f)
-f.close()
+#f = open("bonobo.toml", "rb")
+#bonobo = tomllib.load(f)
+#f.close()
 
-bonobo["userscript"]["version"] = f"v{".".join(version)}"
+#bonobo["userscript"]["version"] = f"v{".".join(version)}"
 
-f = open("bonobo.toml", "w")
-f.write(tomli_w.dumps(bonobo))
-f.close()
+#f = open("bonobo.toml", "w")
+#f.write(tomli_w.dumps(bonobo))
+#f.close()
 
 #f = open("index.js", "w+")
 #js = f.read()

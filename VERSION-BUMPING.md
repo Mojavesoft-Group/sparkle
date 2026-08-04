@@ -19,4 +19,4 @@ Change `versionArray` to match the version, using the `[major, minor, patch]` fo
 ## version.json
 In `version.json`, modify the file's contents to the following array, where `major`, `minor`, and `patch` are the first, second, and third components of the version number, respectively: `["major", "minor", "patch"]`.
 
-A GitHub Actions bot will proceed to bump the version numbers in `manifest.json` and `bonobo.toml`.
+A GitHub Actions bot will proceed to bump the version number in `manifest.json`.
