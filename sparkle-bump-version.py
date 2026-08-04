@@ -1,4 +1,4 @@
-import tomllib, json, re, tomli_w
+import json
 f = open("version.json")
 version = json.loads(f.read())
 f.close()
