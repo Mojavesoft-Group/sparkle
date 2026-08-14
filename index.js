@@ -1576,7 +1576,7 @@ function preloadAddonFromPath(path) {
         crackleSymbol: Symbol("Crackle Data"),
         wrappedFunctions: new Map(),
         addonRepoPath: "https://raw.githubusercontent.com/sparkle-devs/SparkleAddons/refs/heads/master/",
-        snap: (function() {
+        snap: (function() { // This variable contains an object describing the Snap! fork that is currently in use, using info from window.snapForkName and window.snapForkVersion when possible.
             // Other forks?
             if (window.snapForkName && window.snapForkVersion) {
                 return {
